@@ -6,6 +6,12 @@ if_p('graphite-endpoint') do |prop|
   endpoint_args << prop
   regular_args.concat(endpoint_args) 
 end
+if_p('metrics-prefix') do |prop|
+  metrics_args = []
+  metrics_args << "--metrics-prefix"
+  metrics_args << prop
+  regular_args.concat(metrics_args) 
+end
 address_args = []
 pinger_addresses = link('pinger').instances.map(&:address)
   (pinger_addresses - [spec.address]).each do |address|
