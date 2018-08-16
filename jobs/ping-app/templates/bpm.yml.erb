@@ -1,5 +1,11 @@
 <% 
-regular_args = ["--listenPort", p('port'), "--interval", p('ping_interval'), "--error-rate", p('error_rate') if_p('graphite-endpoint') do, "--graphite-endpoint", |prop| end]
+regular_args = ["--listenPort", p('port'), "--interval", p('ping_interval'), "--error-rate", p('error_rate') ]
+if_p('graphite-endpoint') do |prop|
+  endpoint_args = []
+  endpoint_args << "--graphite-endpoint"
+  endpoint_args << prop
+  regular_args.concat(endpoint_args) 
+end
 address_args = []
 pinger_addresses = link('pinger').instances.map(&:address)
   (pinger_addresses - [spec.address]).each do |address|
