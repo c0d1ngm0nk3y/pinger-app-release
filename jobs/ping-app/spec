@@ -23,3 +23,5 @@ properties:
     default: 10
   error_rate:
     default: 0.0
+  graphite-endpoint:
+    default:
