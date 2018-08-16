@@ -25,3 +25,5 @@ properties:
     default: 0.0
   graphite-endpoint:
     default:
+  metrics-prefix:
+    default:
